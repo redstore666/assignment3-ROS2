@@ -262,7 +262,7 @@ namespace hikrobot_camera
 
     MV_FRAME_OUT_INFO_EX frame_info;
     memset(&frame_info, 0, sizeof(MV_FRAME_OUT_INFO_EX));
-    std::vector<unsigned char> raw_data(1920 * 1200 * 3);
+    std::vector<unsigned char> raw_data(4096 * 3000 * 3);
 
     int ret = MV_CC_GetOneFrameTimeout(handle_, raw_data.data(), raw_data.size(), &frame_info, 100);
 
@@ -279,7 +279,7 @@ namespace hikrobot_camera
 
       MV_CC_PIXEL_CONVERT_PARAM cvt_param;
       memset(&cvt_param, 0, sizeof(cvt_param));
-      std::vector<unsigned char> rgb_data(1920 * 1200 * 3);
+      std::vector<unsigned char> rgb_data(4096 * 3000 * 3);
 
       cvt_param.nWidth = frame_info.nWidth;
       cvt_param.nHeight = frame_info.nHeight;

@@ -161,8 +161,18 @@ assignment3-ROS2/                   # 同时也是 colcon 工作空间
 以下为真实海康相机上的实测结果。
 
 ### 1. 节点启动与相机连接
+**说明**：下图拍摄于修复缓冲区大小之前，终端底部的 `sequence size exceeds remaining buffer` 
+警告在修复后已消失。
 
+**修复方法**：将 `src/hikrobot_camera/src/camera_node.cpp` 中 `grab_and_publish()` 
+里的两处缓冲区：
+- `std::vector<unsigned char> raw_data(1920 * 1200 * 3);` → `(4096 * 3000 * 3)`
+- `std::vector<unsigned char> rgb_data(1920 * 1200 * 3);` → `(4096 * 3000 * 3)`
 ![启动成功](docs/images/01_launch_success.png)
+**注**：截图中下方出现的 `sequence size exceeds remaining buffer` 警告，
+> 是因为原始代码中单帧缓冲区按 1920×1200 分配，小于实际相机输出。
+> 已通过将 `src/hikrobot_camera/src/camera_node.cpp` 中 `grab_and_publish()`
+> 里的两处缓冲区改为 4096×3000×3 修复。该警告不影响功能，但会刷屏并降低帧率。
 
 ### 2. 话题与帧率
 
