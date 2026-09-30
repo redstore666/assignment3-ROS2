@@ -1,5 +1,13 @@
-# Only parameters currently supported by the scaffold are listed here.
-# TODO(student): Design and implement camera parameters before adding them.
 /hikrobot_camera:
   ros__parameters:
     use_sim_time: false
+    # 相机序列号：留空表示连接第一个发现的相机
+    camera_serial: ""
+    # 曝光时间（微秒）
+    exposure_time: 5000.0
+    # 增益
+    gain: 10.0
+    # 目标帧率（Hz）
+    frame_rate: 30.0
+    # 像素格式：BayerRG8 / RGB8 / Mono8
+    pixel_format: "BayerRG8"
