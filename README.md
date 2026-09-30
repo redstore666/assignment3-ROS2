@@ -130,6 +130,19 @@ ros2 param set /hikrobot_camera pixel_format "RGB8"
 assignment3-ROS2/                   # 同时也是 colcon 工作空间
 ├── README.md
 ├── docs/
+│   ├── ROS2Tutorial.md
+│   ├── assignment.md
+│   └── images/
+│       ├── 01_launch_success.png
+│       ├── 02_topic_hz.png
+│       ├── 03_params_load.png
+│       ├── 04_rviz2_image.png
+│       ├── 05_param_set.png
+│       ├── 05_rviz2_after_set.png
+│       ├── 06_param_reject.png
+│       ├── 07_disconnect.png
+│       ├── 07_reconnect.png
+│       └── 07_rviz2_recovered.png
 └── src/hikrobot_camera/
     ├── package.xml
     ├── CMakeLists.txt
@@ -141,3 +154,46 @@ assignment3-ROS2/                   # 同时也是 colcon 工作空间
     ├── launch/camera.launch.py
     └── config/camera.yaml
 ```
+---
+
+## 十、测试验证
+
+以下为真实海康相机上的实测结果。
+
+### 1. 节点启动与相机连接
+
+![启动成功](docs/images/01_launch_success.png)
+
+### 2. 话题与帧率
+
+![话题与帧率](docs/images/02_topic_hz.png)
+
+### 3. 参数从 YAML 加载
+
+![参数加载](docs/images/03_params_load.png)
+
+### 4. RViz2 显示实时画面
+
+![RViz2 画面](docs/images/04_rviz2_image.png)
+
+### 5. 动态调参
+
+![调参成功和画面变亮](docs/images/05_param_set.png)
+
+### 6. 越界参数被拦截
+
+![越界拦截](docs/images/06_param_reject.png)
+
+### 7. 断线重连
+
+拔线后：
+
+![断线](docs/images/07_disconnect.png)
+
+插线后恢复：
+
+![重连成功](docs/images/07_reconnect.png)
+
+画面恢复：
+
+![画面恢复](docs/images/07_rviz2_recovered.png)
